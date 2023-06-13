@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-04-phonebook/static/css/main.bc1d3f75.css",
+    "main.js": "/goit-react-hw-04-phonebook/static/js/main.259364e0.js",
+    "static/media/delete-button-svgrepo-com.svg": "/goit-react-hw-04-phonebook/static/media/delete-button-svgrepo-com.d5dd20bf3266fd593210.svg",
+    "index.html": "/goit-react-hw-04-phonebook/index.html",
+    "main.bc1d3f75.css.map": "/goit-react-hw-04-phonebook/static/css/main.bc1d3f75.css.map",
+    "main.259364e0.js.map": "/goit-react-hw-04-phonebook/static/js/main.259364e0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc1d3f75.css",
+    "static/js/main.259364e0.js"
+  ]
+}
