@@ -1,38 +1,48 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 import { nanoid } from 'nanoid'
 import { Formik, Form, Field } from 'formik';
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+export const ContactForm = ({ addContact }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const onInputChange = e => {
+    const { name: fieldName, value: fieldValue } = e.target;
+
+    switch (fieldName) {
+      case 'name':
+        setName(fieldValue);
+        break;
+      case 'number':
+        setNumber(fieldValue);
+        break;
+      default:
+        return;
+    }
   };
 
-  onInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     const event = {
       id: nanoid(),
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
     };
 
-    this.props.addContact(event);
-    this.setState({ name: '', number: '' });
+    addContact(event);
+    setName('');
+    setNumber('');
   };
 
-  render() {
+  
     return (
     <Formik 
-        initialValues={{ name: '', number: '' }}
+        initialValues={{ name: '', number: '' }} 
       >
-      <Form autoComplete="off" className={css.form} onSubmit={this.handleSubmit}>
+      <Form autoComplete="off" className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>Name</label>
           <Field
             className={css.input}
@@ -42,8 +52,8 @@ class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             placeholder="Enter name"
             required
-            value={this.state.name}
-              onChange={this.onInputChange}
+            value={name}
+            onChange={onInputChange}
           />
    
         <label className={css.label}>Number</label>
@@ -55,8 +65,8 @@ class ContactForm extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             placeholder="Enter phone number"
             required
-            value={this.state.number}
-              onChange={this.onInputChange}
+            value={number}
+            onChange={onInputChange}
           />
         <button className={css.btn} type="submit">
           Add contact
@@ -65,11 +75,9 @@ class ContactForm extends Component {
       </Formik>
     );
   }
-}
+
 
 ContactForm.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };
-
-export default ContactForm;

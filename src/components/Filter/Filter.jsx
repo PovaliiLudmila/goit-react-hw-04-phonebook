@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 
-function Filter ({ filter, addFilter })  {
+export const Filter = ({ filter, addFilter }) => {
     return (
       <div className={css.label}>
         <input
@@ -16,7 +16,6 @@ function Filter ({ filter, addFilter })  {
     );
   }
 
-export default Filter;
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
   addFilter: PropTypes.func,
