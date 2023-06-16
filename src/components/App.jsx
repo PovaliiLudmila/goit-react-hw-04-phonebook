@@ -8,7 +8,7 @@ export const App = () => {
   const [filter, setFilter] = useState('');
   const [contacts, setContacts] = useState(() => {
     return (
-      JSON.parse(localStorage.getItem('contacts')) ?? [
+      JSON.parse(window.localStorage.getItem('contacts')) ?? [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
@@ -18,7 +18,7 @@ export const App = () => {
  });
   
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = event => {
