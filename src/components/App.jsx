@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Container } from './Container/Container';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
@@ -36,14 +36,10 @@ export const App = () => {
     }
   };
 
-  const addFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
-
-  const filteredContacts = contacts.filter(contact => {
-    return contact.name.toLowerCase().includes(filter.toLowerCase());
-  });
-
+  const filteredContacts = useMemo(() => {
+    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+  }, [contacts, filter]);
+ 
   const onDelete = id => {
     const filtered = contacts.filter(contact => contact.id !== id);
     setContacts(filtered);
@@ -54,7 +50,7 @@ export const App = () => {
         <h1>Phonebook</h1>
         <ContactForm addContact={addContact}/>
         <h2>Contacts</h2>
-        <Filter setFilter={addFilter} filter={filter} />
+        <Filter setFilter={setFilter} filter={filter} />
         <ContactList
           contacts={filteredContacts}
           onDelete={onDelete}

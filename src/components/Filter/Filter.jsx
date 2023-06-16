@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 
-export const Filter = ({ filter, addFilter }) => {
+export const Filter = ({ filter, setFilter }) => {
     return (
       <div className={css.label}>
         <input
@@ -9,14 +9,16 @@ export const Filter = ({ filter, addFilter }) => {
           name="filter"
           className={css.input}
           value={filter}
-          onChange={addFilter}
+          onChange={e => {
+            setFilter(e.target.value);
+          }}
           placeholder="Enter name"
         />
       </div>
     );
   }
 
-Filter.propTypes = {
+Filter.types = {
   filter: PropTypes.string.isRequired,
   addFilter: PropTypes.func,
 };

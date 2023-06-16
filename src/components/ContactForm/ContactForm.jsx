@@ -77,7 +77,7 @@ export const ContactForm = ({ addContact }) => {
   }
 
 
-ContactForm.propTypes = {
+ContactForm.types = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };
